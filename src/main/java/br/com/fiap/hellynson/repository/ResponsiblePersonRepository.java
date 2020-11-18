@@ -1,5 +1,6 @@
 package br.com.fiap.hellynson.repository;
 
+import br.com.fiap.hellynson.entity.ResponsiblePerson;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -7,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Gabriel Oliveira
  */
-public interface ResponsiblePerson extends JpaRepository<ResponsiblePerson, Integer> {
+public interface ResponsiblePersonRepository extends JpaRepository<ResponsiblePerson, Integer> {
 }

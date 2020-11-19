@@ -1,15 +1,10 @@
 package br.com.fiap.hellynson.service;
 
 import br.com.fiap.hellynson.entity.ResponsiblePerson;
-import br.com.fiap.hellynson.entity.User;
-import br.com.fiap.hellynson.exception.ResponsiblePersonValidationFailureException;
-import br.com.fiap.hellynson.exception.UserValidationFailureException;
 import br.com.fiap.hellynson.repository.ResponsiblePersonRepository;
 import br.com.fiap.hellynson.validation.search.ResponsiblePersonSearchValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Service class for {@link ResponsiblePerson} with business rules.

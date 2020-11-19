@@ -2,6 +2,7 @@ package br.com.fiap.hellynson.service;
 
 import br.com.fiap.hellynson.entity.Address;
 import br.com.fiap.hellynson.entity.City;
+import br.com.fiap.hellynson.entity.Landfill;
 import br.com.fiap.hellynson.entity.User;
 import br.com.fiap.hellynson.repository.AddressRepository;
 import br.com.fiap.hellynson.repository.CityRepository;
@@ -24,21 +25,15 @@ public class AddressService {
     @Autowired
     private CityRepository cityRepository;
 
-    public User persistAddress(User user) {
-        Address receivedAddress = user.getAddress();
-
-        Optional<City> existingCity = this.cityRepository.findByNameIgnoreCase(receivedAddress.getCity().getName());
+    public Address persistAddress(Address address) {
+        Optional<City> existingCity = this.cityRepository.findByNameIgnoreCase(address.getCity().getName());
         if (existingCity.isPresent()) {
-            receivedAddress.setCity(existingCity.get());
+            address.setCity(existingCity.get());
         } else {
-            receivedAddress.setCity(this.cityRepository.save(receivedAddress.getCity()));
+            address.setCity(this.cityRepository.save(address.getCity()));
         }
 
-        Address persistentAddress = this.addressRepository.save(receivedAddress);
-
-        user.setAddress(persistentAddress);
-
-        return user;
+        return this.addressRepository.save(address);
     }
 
 }

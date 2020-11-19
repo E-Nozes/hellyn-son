@@ -1,5 +1,6 @@
 package br.com.fiap.hellynson.exception.handler;
 
+import br.com.fiap.hellynson.exception.LandfillValidationFailureException;
 import br.com.fiap.hellynson.exception.ResourceNotFoundException;
 import br.com.fiap.hellynson.exception.ResponsiblePersonValidationFailureException;
 import br.com.fiap.hellynson.exception.UserValidationFailureException;
@@ -117,6 +118,14 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ResponsiblePersonValidationFailureException.class})
     public ResponseEntity<Object> handleUserValidationFailureException(ResponsiblePersonValidationFailureException ex) {
+        List<String> userMessages = ex.getValidationMessages();
+        List<Error> errorList = Collections.singletonList(new Error(userMessages));
+
+        return new ResponseEntity<>(errorList, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({LandfillValidationFailureException.class})
+    public ResponseEntity<Object> handleUserValidationFailureException(LandfillValidationFailureException ex) {
         List<String> userMessages = ex.getValidationMessages();
         List<Error> errorList = Collections.singletonList(new Error(userMessages));
 

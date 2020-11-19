@@ -24,6 +24,14 @@ public class ResponsiblePersonSearchValidator {
                 new ResourceNotFoundException(generateErrorMessage(INVALID_ID_MESSAGE_TEMPLATE, id)));
     }
 
+    public String validateId(Integer id) {
+        if (!responsiblePersonRepository.findById(id).isPresent()) {
+            return generateErrorMessage(INVALID_ID_MESSAGE_TEMPLATE, id);
+        }
+
+        return null;
+    }
+
     private String generateErrorMessage(String template, Integer id) {
         return String.format(template, id);
     }

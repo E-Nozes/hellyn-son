@@ -1,6 +1,7 @@
 package br.com.fiap.hellynson.service;
 
 import br.com.fiap.hellynson.dto.PasswordUpdateDTO;
+import br.com.fiap.hellynson.entity.Address;
 import br.com.fiap.hellynson.entity.User;
 import br.com.fiap.hellynson.exception.UserValidationFailureException;
 import br.com.fiap.hellynson.repository.UserRepository;
@@ -53,8 +54,9 @@ public class UserService {
     public User create(User user) {
         validateRegistrationPayload(user);
 
-        if (user.getAddress() != null) {
-            user = this.addressService.persistAddress(user);
+        Address address = user.getAddress();
+        if (address != null) {
+            user.setAddress(this.addressService.persistAddress(address));
         }
 
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));

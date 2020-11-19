@@ -2,6 +2,7 @@ package br.com.fiap.hellynson.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -24,15 +25,16 @@ public class Landfill {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @NotEmpty
     @Size(max = 100)
     @Column(length = 100)
     private String notes;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "responsible_person_id")
     private ResponsiblePerson responsiblePerson;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;

@@ -32,7 +32,7 @@ public class SwaggerConfiguration extends SwaggerParameters {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.fiap.healthmater.controller"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.fiap.hellynson.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaInfo())

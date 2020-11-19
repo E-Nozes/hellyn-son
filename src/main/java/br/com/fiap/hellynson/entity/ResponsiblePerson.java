@@ -2,6 +2,7 @@ package br.com.fiap.hellynson.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -31,6 +32,12 @@ public class ResponsiblePerson {
     @Size(max = 100)
     @Column(length = 100)
     private String notes;
+
+    @NotEmpty
+    @Size(min = 10, max = 20)
+    @Pattern(regexp = "(^$|[0-9]{20})")
+    @Column(nullable = false, length = 20)
+    private String phone;
 
     public Integer getId() {
         return id;
@@ -64,13 +71,22 @@ public class ResponsiblePerson {
         this.notes = notes;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
-        return "Responsible{" +
+        return "ResponsiblePerson{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", notes='" + notes +
+                ", notes='" + notes + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 

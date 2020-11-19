@@ -28,4 +28,8 @@ public class ResponsiblePersonService {
         return this.responsiblePersonRepository.save(responsiblePerson);
     }
 
+    public void delete(Integer id) {
+        this.responsiblePersonRepository.delete(this.findById(id));
+    }
+
 }

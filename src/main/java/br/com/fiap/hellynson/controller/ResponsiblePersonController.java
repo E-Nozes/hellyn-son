@@ -42,7 +42,7 @@ public class ResponsiblePersonController implements ResponsiblePersonResource {
         return new ResponseEntity<>(responsiblePersonService.findById(id), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Register a new User")
+    @ApiOperation(value = "Register a new Responsible Person")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Invalid payload information"),
             @ApiResponse(code = 500, message = "Something Unexpected Happened")
@@ -50,6 +50,17 @@ public class ResponsiblePersonController implements ResponsiblePersonResource {
     @PreAuthorize("hasAuthority('ROLE_REGISTER_RESPONSIBLE') and #oauth2.hasScope('write')")
     public ResponseEntity<ResponsiblePerson> register(@RequestBody @Valid ResponsiblePerson responsiblePerson) {
         return new ResponseEntity<>(responsiblePersonService.create(responsiblePerson), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Delete a Responsible Person")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Responsible Person not found for the given ID"),
+            @ApiResponse(code = 500, message = "Something Unexpected Happened")
+    })
+    @PreAuthorize("hasAuthority('ROLE_DELETE_RESPONSIBLE') and #oauth2.hasScope('write')")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
+        responsiblePersonService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

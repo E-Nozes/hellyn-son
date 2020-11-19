@@ -2,7 +2,6 @@ package br.com.fiap.hellynson.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -35,7 +34,6 @@ public class ResponsiblePerson {
 
     @NotEmpty
     @Size(min = 10, max = 20)
-    @Pattern(regexp = "(^$|[0-9]{20})")
     @Column(nullable = false, length = 20)
     private String phone;
 
